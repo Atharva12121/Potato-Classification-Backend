@@ -8,13 +8,13 @@ from io import BytesIO
 from PIL import Image #read the image
 import tensorflow as tf
 import keras
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-]
+origins = os.getenv("ALLOWED_ORIGINS").split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
